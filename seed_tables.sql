@@ -104,7 +104,7 @@ create table if not EXISTS tbl_deficiencia(
 );
 
 create table if not EXISTS tbl_droga_ilicita(
-	cod_droga int not null primary key,
+	cod_droga int not null primary key auto_increment,
 	nom_droga varchar(255) not null
 );
 
@@ -115,7 +115,7 @@ create table if not EXISTS tbl_doenca(
 );
 
 create table if not EXISTS tbl_area_afetada_doenca(
-	cod_area int not null primary key,
+	cod_area int not null primary key auto_increment,
 	nom_area varchar(255) not null
 );
 
@@ -222,6 +222,10 @@ insert into tbl_escolaridade (cod_escolaridade, nom_escolaridade) value (6, 'Pó
 insert into tbl_escolaridade (cod_escolaridade, nom_escolaridade) value (7, 'Mestrado');
 insert into tbl_escolaridade (cod_escolaridade, nom_escolaridade) value (8, 'Doutorado');
 
+/* tbl_cargo_profissional */
+insert into tbl_cargo_profissional(cod_cargo, nom_cargo) values("ADM01", "Gerente");
+insert into tbl_cargo_profissional(cod_cargo, nom_cargo) values("CMP01", "Fiscal");
+
 /* tbl_categoria_animal */
 
 insert into tbl_categoria_animal (cod_categoria_animal, nom_categoria) values (1, 'Canino');
@@ -252,13 +256,46 @@ insert into tbl_plano_saude (nom_plano) values ("Next saúde");
 
 /* tbl_intensidade_ocorrencia */
 
-insert into tbl_intensidade_ocorrencia (cod_intensidade, nom_intensidade) values (1, "Fraco");
-insert into tbl_intensidade_ocorrencia (cod_intensidade, nom_intensidade) values (2, "Baixo");	
-insert into tbl_intensidade_ocorrencia (cod_intensidade, nom_intensidade) values (3, "Normal");
-insert into tbl_intensidade_ocorrencia (cod_intensidade, nom_intensidade) values (4, "Acima da média");
-insert into tbl_intensidade_ocorrencia (cod_intensidade, nom_intensidade) values (5, "Alto");
-insert into tbl_intensidade_ocorrencia (cod_intensidade, nom_intensidade) values (6, "Extremo");
+insert into tbl_intensidade_ocorrencia (cod_intensidade, nom_intensidade) values (1, "Baixa");
+insert into tbl_intensidade_ocorrencia (cod_intensidade, nom_intensidade) values (2, "Moderada");	
+insert into tbl_intensidade_ocorrencia (cod_intensidade, nom_intensidade) values (3, "Alta");
 
 /* tbl_doencas */
+insert into tbl_doenca(cod_cid, nom_doenca, col_descricao_doenca) values('A00', 'Cólera', '');
+insert into tbl_doenca(cod_cid, nom_doenca, col_descricao_doenca) values('A01', 'Febres Tifóide e Paratifóide', '');
+insert into tbl_doenca(cod_cid, nom_doenca, col_descricao_doenca) values('A02', 'Outras infecções por Salmonella', '');
+insert into tbl_doenca(cod_cid, nom_doenca, col_descricao_doenca) values('A03', 'Shiguelose', '');
+insert into tbl_doenca(cod_cid, nom_doenca, col_descricao_doenca) values('A04', 'Outras Infecções Intestinais bacterianas', '');
+insert into tbl_doenca(cod_cid, nom_doenca, col_descricao_doenca) values('A05', 'Outras Intoxicações Alimentares Bacterianas, Não Classificadas em Outra Parte', '');
+insert into tbl_doenca(cod_cid, nom_doenca, col_descricao_doenca) values('A06', 'Amebíase', '');
+insert into tbl_doenca(cod_cid, nom_doenca, col_descricao_doenca) values('A07', 'Outras doenças Intestinais por protozoários', '');
+insert into tbl_doenca(cod_cid, nom_doenca, col_descricao_doenca) values('A08', 'Infecções intestinais virais, outras e as não especificadas', '');
+insert into tbl_doenca(cod_cid, nom_doenca, col_descricao_doenca) values('A09', 'Diarréia e gastroenterite de origem infecciosa presumível', '');
+insert into tbl_doenca(cod_cid, nom_doenca, col_descricao_doenca) values('A15', 'Tuberculose Respiratória, Com Confirmação Bacteriológica e Histológica', '');
+insert into tbl_doenca(cod_cid, nom_doenca, col_descricao_doenca) values('A16', 'Tuberculose Das Vias Respiratórias, Sem Confirmação Bacteriológica ou Histológica', '');
 
 /* tbl_area_afetada_doenca */
+insert into tbl_area_afetada_doenca (nom_area) values ('Cérebro');
+insert into tbl_area_afetada_doenca (nom_area) values ('Pulmão');
+insert into tbl_area_afetada_doenca (nom_area) values ('Coração');
+insert into tbl_area_afetada_doenca (nom_area) values ('Fígado');
+insert into tbl_area_afetada_doenca (nom_area) values ('Estomago');
+insert into tbl_area_afetada_doenca (nom_area) values ('Intestino');
+insert into tbl_area_afetada_doenca (nom_area) values ('Pele');
+insert into tbl_area_afetada_doenca (nom_area) values ('Braços');
+insert into tbl_area_afetada_doenca (nom_area) values ('Pernas');
+insert into tbl_area_afetada_doenca (nom_area) values ('Coluna');
+
+
+/* tbl_deficiencia */
+insert into tbl_deficiencia(nom_deficiencia) values("Paralisia");
+insert into tbl_deficiencia(nom_deficiencia) values("Cegueira");
+insert into tbl_deficiencia(nom_deficiencia) values("Cadeirante");
+insert into tbl_deficiencia(nom_deficiencia) values("Surdez");
+insert into tbl_deficiencia(nom_deficiencia) values("Mudo");
+
+/* tbl_droga_ilicita */
+insert into tbl_droga_ilicita(nom_droga) values("Maconha");
+insert into tbl_droga_ilicita(nom_droga) values("Cocaína");
+insert into tbl_droga_ilicita(nom_droga) values("Crack");
+insert into tbl_droga_ilicita(nom_droga) values("LSD");

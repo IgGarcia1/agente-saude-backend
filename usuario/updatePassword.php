@@ -10,7 +10,7 @@
 	$_POST["col_genero"] = "M";
 	$_POST["col_obito"] = "";
 	$_POST["col_email"] = "email@email.com";
-	$_POST["col_senha"] = "senha123";
+	//$_POST["col_senha"] = "senha123";
 	$_POST["cod_escolaridade"] = 1;
 
 
@@ -20,6 +20,6 @@
 	if (!empty($_POST)){
 		
 		$user = new UserDao($_POST);
-		echo $user->create();
+		echo $user->update_password("nova senha");
 	}
 ?>
