@@ -1,7 +1,7 @@
 <?php
 /* Criando  usuario*/
 	require_once("../dao/usuarioDAO.php");
-
+	require_once("../geradorJSON.php");
 
 	/*  POST para teste */
 
@@ -20,6 +20,7 @@
 	if (!empty($_POST)){
 		
 		$user = new UserDao($_POST);
-		echo $user->create();
+		$result = $user->create();
+		createResponse($result);
 	}
 ?>

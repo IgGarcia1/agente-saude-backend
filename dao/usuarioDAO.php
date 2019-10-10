@@ -10,7 +10,6 @@ class UserDao{
 	private $senha;
 	private $obito;
 	private $cod_escolaridade;
-	private $genero;
 	private $conn;
 	private $sql = '';
 	private $valores;
@@ -19,7 +18,6 @@ class UserDao{
 		$this->num_sus = $post['num_sus'];
 		$this->nome = $post['col_nome'];
 		$this->email = $post['col_email'];
-		$this->genero = $post['col_genero'];
 		$this->obito = $post['col_obito'];
 		$this->senha = $post['col_senha'] || "";
 		$this->cod_escolaridade = $post['cod_escolaridade'];
@@ -30,7 +28,6 @@ class UserDao{
 		$this->num_sus = $post['num_sus'];
 		$this->nome = $post['col_nome'];
 		$this->email = $post['col_email'];
-		$this->genero = $post['col_genero'];
 		$this->obito = $post['col_obito'];
 		$this->senha = $post['col_senha'];
 		$this->cod_escolaridade = $post['cod_escolaridade'];
@@ -40,8 +37,7 @@ class UserDao{
 	function verificaCampos($conn){
 		$fields = array(
 			"num_sus" => $this->num_sus, 
-			"col_nome" => $this->nome, 
-			"col_genero" => $this->genero, 
+			"col_nome" => $this->nome,  
 			"col_obito" => $this->obito, 
 			"col_email" => $this->email, 
 			"col_senha" => $this->senha, 
@@ -65,7 +61,7 @@ class UserDao{
 
 		$this->verificaCampos($conn);
 
-		$sql = "insert into tbl_usuario (num_sus, col_nome, col_genero, col_obito, col_email, col_senha, cod_escolaridade) values(". $this->num_sus . ",'" . $this->nome . "','" . $this->genero . "'," . $this->obito . ",'". $this->email . "','" . $this->senha . "'," . $this->cod_escolaridade . ");";
+		$sql = "insert into tbl_usuario (num_sus, col_nome, col_obito, col_email, col_senha, cod_escolaridade) values(". $this->num_sus . ",'" . $this->nome . "'," . $this->obito . ",'". $this->email . "','" . $this->senha . "'," . $this->cod_escolaridade . ");";
 
 		//echo $sql;
 
