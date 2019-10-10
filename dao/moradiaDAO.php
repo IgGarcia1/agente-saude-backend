@@ -21,17 +21,13 @@ class MoradiaDAO{
 			return False; //"Campos inválidos";
 		}
 
-		$id_moradia = $this->create_moradia();
+		$id_moradia = $this->create_moradia($props);
 
 		if( gettype($id_moradia) != "string" ){
 			$num_sus = $props['num_sus'];
 			$this->create_rel_user_moradia($num_sus, $id_moradia);
 			return True;
 		}else{
-			if(!$this->delete_user($props['num_sus'])){
-				echo "Não foi possível deletar usuario";
-			};
-
 			echo "Não foi possível relacionar casa com cidadão. Tente novamente em alguns instantes.";
 			return False;
 		}
@@ -55,12 +51,18 @@ class MoradiaDAO{
 
 
 		$sql = "insert into tbl_moradia(col_cep, col_numero, tem_abastecimento_agua, tem_sistema_esgoto, tem_coleta_lixo, tem_animais, col_rua_moradia)";
-		$sql = $sql . "values(". $props['col_cep'] .",". $props['col_numero'] .",". $props['tem_abastecimento_agua'] . ", ". $props['tem_sistema_esgoto'].",". $props['tem_coleta_lixo'].", ". $props['tem_animais'].", ". $props['col_rua_moradia'] .");";
+		$sql = $sql . "values(". $props['col_cep'] .",". $props['col_numero'] .",". $props['tem_abastecimento_agua'] . ", ". $props['tem_sistema_esgoto'].",". $props['tem_coleta_lixo'].", ". $props['tem_animais'].", '". $props['col_rua_moradia'] ."');";
 	
-		echo $sql;
+		//echo $sql . "<br><br>";
 
 		if($conn->query($sql)===True){
-			$retorno = $conn->last_id;
+			$consulta = "select * from tbl_moradia ordem by cod_moradia desc limit=1;";
+
+			$retorno = $conn->query($consulta);
+			echo "RETORNO:  " . $retorno;
+
+			/* Coletar o ultimo id inserido para gerar o relacionamento. */
+
 			$conn->close();
 			return $retorno;
 		}else{
@@ -68,16 +70,6 @@ class MoradiaDAO{
 			return "Error";
 		}
 
-	}
-
-	private function delete_user($num_sus){
-		$conn = createConnectionDB();
-
-		$sql = "delete * from tbl_usuario where num_sus = " . $num_sus . ";";
-		$result = $conn->query($sql);
-		$conn->close();
-
-		return $result;
 	}
 
 	private function create_rel_user_moradia($user_id, $moradia_id){

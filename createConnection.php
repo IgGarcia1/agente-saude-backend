@@ -8,7 +8,7 @@ function createConnectionDB(){
 	$connection = mysqli_connect($dbhost, $dbuser, $dbpass, $db) or  die("Connection failed");
 
 
-	echo "Connected!<br><br>";
+	//echo "Connected!<br><br>";
 	return $connection;
 }
 

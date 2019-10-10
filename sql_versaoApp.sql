@@ -13,6 +13,13 @@ insert into tbl_escolaridade (cod_escolaridade, nom_escolaridade) value (6, 'Pó
 insert into tbl_escolaridade (cod_escolaridade, nom_escolaridade) value (7, 'Mestrado');
 insert into tbl_escolaridade (cod_escolaridade, nom_escolaridade) value (8, 'Doutorado');
 
+
+
+create table if not EXISTS tbl_deficiencia(
+	cod_deficiencia int not null auto_increment primary key,
+	nom_deficiencia varchar(255) not null
+);
+
 create table if not EXISTS tbl_usuario(
 	num_sus bigint not null primary key, 
     col_parentesco varchar(50) not null,
@@ -105,10 +112,7 @@ create table if not exists tbl_rel_categoria_animal_moradia(
 );
 
 /* ------ SAUDE ------ */ 
-create table if not EXISTS tbl_deficiencia(
-	cod_deficiencia int not null auto_increment primary key,
-	nom_deficiencia varchar(255) not null
-);
+
 
 create table if not EXISTS tbl_doenca(
 	cod_cid varchar(5) not null primary key,
@@ -130,7 +134,7 @@ create table if not EXISTS tbl_saude_cidadao(
 	col_hipertensao boolean default False,
 	col_diabetes boolean default False,
     col_mudanca boolean default False,
-    col_cancer boolean default False
+    col_cancer boolean default False,
 
 	foreign key (num_sus) references tbl_usuario(num_sus),
 	primary key (num_sus)	
@@ -225,6 +229,7 @@ insert into tbl_doenca(cod_cid, nom_doenca, col_descricao_doenca) values('000', 
 insert into tbl_doenca(cod_cid, nom_doenca, col_descricao_doenca) values('001', 'Outras', '');
 
 /* tbl_deficiencia */
+insert into tbl_deficiencia(nom_deficiencia) values("Não possuí");
 insert into tbl_deficiencia(nom_deficiencia) values("Auditiva");
 insert into tbl_deficiencia(nom_deficiencia) values("Visual");
 insert into tbl_deficiencia(nom_deficiencia) values("Física");

@@ -1,6 +1,6 @@
 <?php 
 
-include "../moradiaDAO.php";
+include "../dao/moradiaDAO.php";
 include "../geradorJSON.php";
 
 $moradia = new MoradiaDAO();
