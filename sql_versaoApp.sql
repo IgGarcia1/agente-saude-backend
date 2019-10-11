@@ -31,6 +31,8 @@ create table if not EXISTS tbl_usuario(
     col_mudanca boolean default False,
 	cod_escolaridade int not null,
     col_crianca_fica_com varchar(50),
+    col_email varchar(255) default "",
+    col_senha varchar(255) default "",
 
 	foreign key (cod_escolaridade) references tbl_escolaridade(cod_escolaridade),
     foreign key (cod_deficiencia) references tbl_deficiencia(cod_deficiencia)

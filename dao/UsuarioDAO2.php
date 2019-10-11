@@ -58,7 +58,27 @@ class UsuarioDAO{
 		}
 	}
 
-
+    public function do_login($props){
+        $conn = createConnectionDB();
+        
+        $sql = "select * from tbl_usuario where col_email='". $props['col_email']."';";
+        
+        $r = $conn->query($sql);
+        $array = $conn->fecth_array($r);
+        
+        var_dump($array); echo '<br>';
+        
+        $conn->close();
+        
+        if ($array["num_rows"]==0){ //Tamanho
+            return "Usuario nao cadastrado.";
+        }
+        if ($r['col_senha'] == $props['col_senha']){
+            return "Login realizado com sucesso!";
+        }else{
+            return "Senha incorreta.";
+        }
+    }
 }
 /*num_sus bigint not null primary key, 
     col_parentesco varchar(50) not null,

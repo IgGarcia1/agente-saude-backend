@@ -95,7 +95,16 @@
 			</form>
 		</div>
 
-		<br> <br> <br>
+		<br> <br> 
+        <div>
+            <form method="POST" action="./usuario/login.php">
+                <input type="text" name="col_email" >
+                <input type="text" name="col_senha" >
+                <input type="submit" value="Login">
+            </form>
+        </div>
+        
+        <br>
 
 
 		<div class="container">
@@ -142,6 +151,46 @@
 
 			</form>
 
+		</div>
+
+		<div class="container">
+			<h3>Cadastro saude</h3>
+
+			<div>
+				<form action="./saude/create.php" method="POST">
+				
+					<label>SUS</label> <input type="number" name="num_sus" /> <br>
+					<label>Cardiaco</label> 
+					<select name="col_doenca_cardiaca" >
+						<option value=1>SIM</option>
+						<option value=0>NAO</option>
+					</select> <br>
+
+					<label>Peso</label> <input type="number" name="col_peso"> <br>
+
+					<label>Respiratoria</label>
+					<select name="col_doenca_respiratoria">
+						<option value=1>SIM</option>
+						<option value=0>NAO</option>
+					</select> <br>
+
+					<label>Rins</label>
+					<select name="col_problema_rins">
+						<option value=1>SIM</option>
+						<option value=0>NAO</option>
+					</select> <br>
+
+					<input type="number" name="col_e_fumante" > Fumante<br>
+					<input type="number" name="col_usa_alcool" id='2'> Alcool<br>
+					<input type="number" name="col_usa_drogas"> Drogas<br>
+					<input type="number" name="col_hipertensao"> Hipertenso<br>
+					<input type="number" name="col_mudanca"> Mudanca<br>
+					<input type="number" name="col_diabetes"> Diabetes<br>
+					<input type="number" name="col_avc"> AVC<br>
+					<input type="number" name="col_cancer"> cancer<br>
+                    <input type="submit" value='Enviar' />
+				</form>
+			</div>
 		</div>
 
 		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
