@@ -25,7 +25,7 @@ class UsuarioDAO{
 		$conn = createConnectionDB();
 
 		$sql = "insert into tbl_usuario(num_sus, col_parentesco, col_genero, cod_deficiencia, col_obito, col_plano_saude, col_mudanca, cod_escolaridade, col_crianca_fica_com)";
-		$sql = $sql . "values(" . $props['num_sus'] .", ". $props['col_parentesco'] . ", '". $props['col_genero'] . "', ". $props['cod_deficiencia'] . ",".  $props['col_obito'] . ",". $props['col_plano_saude'] .",". $props['col_mudanca'].", ". $props['cod_escolaridade'] .", '". $props['col_crianca_fica_com'] ."');";
+		$sql = $sql . "values(" . $props['num_sus'] .", ". $props['col_parentesco'] . ", '". $props['col_sexo'] . "', ". $props['cod_deficiencia'] . ",".  $props['col_obito'] . ",". $props['col_plano_saude'] .",". $props['col_mudanca'].", ". $props['cod_escolaridade'] .", '". $props['col_crianca'] ."');";
 
 		//echo $sql .  "<br><br>";
 
@@ -34,9 +34,9 @@ class UsuarioDAO{
 		$conn->close();
 
 		if ($result===True){
-			return "Usuário cadastrado com sucesso!";
+			return "OK!";
 		}else{
-			return "Erro ao cadastrar usuário." .  $erro;
+			return "Error";
 		}
 
 	}
@@ -52,7 +52,7 @@ class UsuarioDAO{
 		$conn->close();
 
 		if($result===True){
-			return "Senha atualizada com sucesso."; 
+			return "OK"; 
 		}else{
 			return "Erro ao atualizar senha.";
 		}
@@ -63,32 +63,52 @@ class UsuarioDAO{
         
         $sql = "select * from tbl_usuario where col_email='". $props['col_email']."';";
         
-        $r = $conn->query($sql);
-        $array = $conn->fecth_array($r);
-        
-        var_dump($array); echo '<br>';
+        $r = mysqli_query($conn, $sql);
         
         $conn->close();
         
-        if ($array["num_rows"]==0){ //Tamanho
+        if ( mysqli_num_rows($r)==0){ //Tamanho
             return "Usuario nao cadastrado.";
         }
-        if ($r['col_senha'] == $props['col_senha']){
-            return "Login realizado com sucesso!";
+               
+        while($row = $r->fetch_assoc()) {
+            if($row['col_senha'] == $props['col_senha']){
+                return "OK!";
+            }
+        }
+        
+        return "Senha incorreta.";
+    }
+
+
+    public function create_cidadao_rua($props){
+        $conn = createConnectionDB();
+        
+        $sql = "insert into tbl_cidadao_rua(num_sus,col_tempo_rua, col_alimenta_dia, col_origem_alimentacao, col_higiene_pessoal, col_recebe_beneficio, col_possui_referencia_familiar) ";
+        $sql = $sql . "values(".$props['num_sus'].",".$props['col_tempo_rua'].",".$props['col_alimenta_dia'].", '".$props['col_origem_alimentacao']."', ".$props['col_higiene_pessoal'].", ".$props['col_recebe_beneficio'].",".$props['col_possui_referencia_familiar'].");"
+            
+            
+        $result = $conn->query($sql);
+        $erro = $conn->erro;
+        $conn->close();
+        
+        if ($result){
+            return "OK!";
         }else{
-            return "Senha incorreta.";
+            return "Erro ao cadastrar.";
         }
     }
 }
-/*num_sus bigint not null primary key, 
-    col_parentesco varchar(50) not null,
-    col_genero char(1) not null,
-    
-    cod_deficiencia int, 
-	col_obito boolean default False,
-    col_plano_saude boolean default False,
-    col_mudanca boolean default False,
-	cod_escolaridade int not null,
-    col_crianca_fica_com varchar(50),*/
+
+/*
+    num_sus bigint not null,
+    col_tempo_rua float not null,
+    col_alimenta_dia boolean default False,
+    col_origem_alimentacao varchar(70) not null,
+    col_higiene_pessoal boolean default False,
+
+    col_recebe_beneficio boolean default False,
+    col_possui_referencia_familiar boolean default False,
+*/
 ?>
 

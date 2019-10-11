@@ -26,10 +26,10 @@ class MoradiaDAO{
 		if( gettype($id_moradia) != "string" ){
 			$num_sus = $props['num_sus'];
 			$this->create_rel_user_moradia($num_sus, $id_moradia);
-			return True;
+			return "OK!";
 		}else{
-			echo "Não foi possível relacionar casa com cidadão. Tente novamente em alguns instantes.";
-			return False;
+			//echo "Não foi possível relacionar casa com cidadão. Tente novamente em alguns instantes.";
+			return "ERROR";
 		}
 	}
 
@@ -51,7 +51,7 @@ class MoradiaDAO{
 
 
 		$sql = "insert into tbl_moradia(col_cep, col_numero, tem_abastecimento_agua, tem_sistema_esgoto, tem_coleta_lixo, tem_animais, col_rua_moradia)";
-		$sql = $sql . "values(". $props['col_cep'] .",". $props['col_numero'] .",". $props['tem_abastecimento_agua'] . ", ". $props['tem_sistema_esgoto'].",". $props['tem_coleta_lixo'].", ". $props['tem_animais'].", '". $props['col_rua_moradia'] ."');";
+		$sql = $sql . "values(". $props['col_cep'] .",". $props['col_numero'] .",". $props['col_agua'] . ", ". $props['col_esgoto'].",". $props['col_lixo'].", ". $props['col_tem_animal'].", '". $props['col_rua_moradia'] ."');";
 	
 		//echo $sql . "<br><br>";
 
@@ -59,7 +59,7 @@ class MoradiaDAO{
 			$consulta = "select * from tbl_moradia ordem by cod_moradia desc limit=1;";
 
 			$retorno = $conn->query($consulta);
-			echo "RETORNO:  " . $retorno;
+			//echo "RETORNO:  " . $retorno;
 
 			/* Coletar o ultimo id inserido para gerar o relacionamento. */
 
@@ -67,7 +67,7 @@ class MoradiaDAO{
 			return $retorno;
 		}else{
 			$conn->close();
-			return "Error";
+			return "ERROR";
 		}
 
 	}
@@ -82,15 +82,15 @@ class MoradiaDAO{
 		 * num_sus bigint not null, cod_moradia bigint not null
 		 */
 
-		 echo " REL_USER_MORADIA |" . $sql;
+		 //echo " REL_USER_MORADIA |" . $sql;
 
 		$result = $conn->query($sql);
 		$conn->close();
 
 		if($result === True){
-			return "Relacionamento criado com sucesso";
+			return "OK";
 		}else{
-			return "Erro no relacionamento.";
+			return "ERROR";
 		}
 	} 
 

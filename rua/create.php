@@ -7,7 +7,6 @@ header('Acess-Control-Allow-Origin: *');
 $jsonP = json_decode($_GET);
 
 $user = new UsuarioDAO();
-$r = $user->do_login($jsonP['dados']);
-echo $r;
-
+$r = $user->create_cidadao_rua($jsonP['dados']);
+echo r;
 ?>

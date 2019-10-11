@@ -13,14 +13,16 @@
 	$_POST["col_senha"] = "senha123";
 	$_POST["cod_escolaridade"] = 1;*/
 
+    header('Acess-Control-Allow-Origin: *');
 
+    $jsonP = json_decode($_GET);
 
 
 
 	if (!empty($_POST)){
 		
 		$user = new UsuarioDAO();
-		$result = $user->create($_POST);
-		echo createResponse($result);
+		$result = $user->create($jsonP['dados']);
+		echo $result;
 	}
 ?>

@@ -105,6 +105,39 @@
         </div>
         
         <br>
+        <div>
+            <H3>uSUARIO RUA</H3>
+            
+            <FORM action="./rua/create.php" method="POST">
+                SUS<input type="number" /><br>
+                TEMPO<input type="number" /> <br>
+                ALIMENTA <select>
+                    <option value=1>SIM</option>
+                    <option value=0>NAO</option>
+                </select><br>
+                ORIGEM ALIMENTO 
+                <select>
+                    <option value="mercado">MERCADO</option>
+                    <option value="orta">"orta"</option>
+                    <option value="nao alimenta">Nao alimenta</option>
+                </select><br>
+                Higiene <select>
+                    <option value=1>SIM</option>
+                    <option value=0>NAO</option>
+                </select><br>
+                
+            </FORM>
+        </div>
+        
+        <br>
+        <!-- num_sus bigint not null,
+    col_tempo_rua float not null,
+    col_alimenta_dia boolean default False,
+    col_origem_alimentacao varchar(70) not null,
+    col_higiene_pessoal boolean default False,
+
+    col_recebe_beneficio boolean default False,
+    col_possui_referencia_familiar boolean default False,-->
 
 
 		<div class="container">

@@ -25,17 +25,15 @@ create table if not EXISTS tbl_usuario(
     col_parentesco varchar(50) not null,
     col_genero char(1) not null,
     
-    cod_deficiencia int, 
+    cod_deficiencia varchar(100), 
 	col_obito boolean default False,
     col_plano_saude boolean default False,
     col_mudanca boolean default False,
-	cod_escolaridade int not null,
+	cod_escolaridade varchar not null,
     col_crianca_fica_com varchar(50),
     col_email varchar(255) default "",
     col_senha varchar(255) default "",
-
-	foreign key (cod_escolaridade) references tbl_escolaridade(cod_escolaridade),
-    foreign key (cod_deficiencia) references tbl_deficiencia(cod_deficiencia)
+    
 );
 
 create table tbl_cidadao_rua(
@@ -125,10 +123,10 @@ create table if not EXISTS tbl_doenca(
 
 create table if not EXISTS tbl_saude_cidadao(
 	num_sus bigint not null,
-	col_peso float not null,
-	col_doenca_cardiaca boolean default False,
-    col_doenca_respiratoria boolean default False,
-    col_problema_rins boolean default False,
+	col_peso varchar not null,
+	col_doenca_cardiaca varchar default False,
+    col_doenca_respiratoria varchar default False,
+    col_problema_rins varchar default False,
     col_e_fumante boolean default False,
 	col_usa_alcool boolean default False,
 	col_avc boolean default False,

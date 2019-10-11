@@ -22,9 +22,9 @@ class UserHealthDAO{
         $conn->close();
     
         if($result){
-            return "Cadastro realizado com sucesso.";
+            return "OK!";
         }else{
-            return "Falha ao cadastrar.";
+            return "ERROR";
         }
     }
 
